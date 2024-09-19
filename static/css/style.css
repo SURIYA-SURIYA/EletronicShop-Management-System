@@ -1,0 +1,23 @@
+.carousel-item img{
+    object-fit:cover;
+    object-position: top;
+    height: 80vh;
+    overflow: hidden;
+}
+.pic-box{
+
+position: relative;
+}
+.hot{
+    background-color: orangered;
+    color: white;
+    width: 50px;
+    font-weight: bold;
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 10 ;
+}

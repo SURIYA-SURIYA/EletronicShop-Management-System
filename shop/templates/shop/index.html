@@ -1,0 +1,31 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+   Electronic | Online Shop
+{% endblock title %}
+
+{% block content %}
+{% include 'shop/inc/slider.html' %} 
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Latest Offers</h1>
+    <hr>
+    <div class="row">
+        {% for item in products %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card shadow-sm border-light">
+                <img src="{{item.Product_Image.url}}" class="card-img-top" alt="image" style="height:200px; object-fit:cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary">{{item.Product_Name}}</h5>
+                    <p class="card-text">
+                        <span class="d-block text-danger"><s>Rs. {{item.Original_price|floatformat:2}}</s></span>
+                        <span class="d-block bg-success text-white py-1 px-2 rounded">Rs. {{item.Selling_price|floatformat:2}}</span>
+                    </p>
+                    <a href="{% url 'product_details' item.Catagory.Catagory_Name item.Product_Name %}" class="btn btn-primary stretched-link">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

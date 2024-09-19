@@ -1,0 +1,50 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+   Shopping Cart | Online Shop
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+        <h4 class="mb-3 text-primary">Your Cart</h4>
+        <hr style="border-color:#b8bfc2;">
+        <div class="row">
+            {% if cart_items %}
+                <div class="table-responsive"> <!-- Responsive table container -->
+                    <table class="table table-bordered table-hover table-striped align-middle"> <!-- Bootstrap table classes -->
+                        <thead class="table-dark"> <!-- Dark header for contrast -->
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Purchase Date</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                            <tr>
+                                <td class="text-primary fw-bold">{{ item.product.Product_Name }}</td>
+                                <td>{{ item.created_at }}</td>
+                                <td>{{ item.product_qty }}</td>
+                                <td>₹{{ item.product.Selling_price }}</td>
+                                <td>₹{{ item.product_amount }}</td> <!-- Total price passed from view -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Download PDF Button -->
+                <div class="text-center mt-4">
+                    <a href="{% url 'download_cart_pdf' %}" class="btn btn-danger">Download Cart Details (PDF)</a>
+                </div>
+            {% else %}
+                <div class="alert alert-warning text-center" role="alert">
+                    Your cart is empty.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

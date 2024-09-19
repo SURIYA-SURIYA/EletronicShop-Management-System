@@ -1,0 +1,33 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+   Products Page | Online Shop
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h4 class="mb-3">{{ Catagory_Name }} Products</h4>
+                <hr style="border-color:#b8bfc2;">
+            </div>
+            {% for item in products %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card border-light shadow-sm" style="max-width: 100%;">
+                    <img src="{{ item.Product_Image.url }}" class="card-img-top" alt="{{ item.Product_Name }}" style="height:200px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">{{ item.Product_Name }}</h5>
+                        <p class="card-text">
+                            <span class="float-start text-danger" style="text-decoration:line-through;">Rs.{{ item.Original_price|floatformat:0 }}</span>
+                            <span class="float-end bg-success text-white px-2 py-1 rounded">Rs. {{ item.Selling_price|floatformat:0 }}</span>
+                        </p>
+                        <a href="{% url 'product_details' Catagory_Name item.Product_Name %}" class="btn btn-primary my-2">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

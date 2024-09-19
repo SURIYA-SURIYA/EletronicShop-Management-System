@@ -1,0 +1,43 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+   Collections Page | Online Shop
+{% endblock title %}
+
+{% block content %}
+<section class="py-5 text-center container" style="margin-top:70px; height:200px;">
+    <div class="row py-lg-5">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h1 class="fw-light">Best Sellers</h1>
+            <p class="lead text-muted">Our Most Popular Products Based on Sales. Updated Hourly.</p>
+            <p>
+                <a href="{% url 'login'  %}" class="btn btn-primary my-2">Already a User</a>
+                <a href="{% url 'register' %}" class="btn btn-secondary my-2">Register</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Categories</h4> 
+                <hr style="border-color:#b8bfc2;">
+            </div>
+            {% for item in catagory %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card shadow-sm border-light">
+                    <img src="{{item.Catagory_Image.url}}" class="card-img-top" alt="Category Image" style="height:200px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">{{item.Catagory_Name}}</h5>
+                        <p class="card-text text-muted">{{item.Catagory_Description}}</p>
+                        <a href="{% url 'collections' item.Catagory_Name %}" class="btn btn-primary stretched-link">View Products</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

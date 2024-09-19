@@ -1,0 +1,56 @@
+{% extends 'shop/layouts/main.html' %}
+
+
+{% block title %}
+   Register page | Online Shop
+
+{% endblock title  %}
+
+{% block content  %}
+<div class="container" style="margin-top:70px;">
+    <div class="row">
+     <div class="col-12">
+         <h1>Register page</h1>
+         <hr>
+     </div>
+    </div>
+    <section class="py-4 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <form method="post" action="">
+                        {% csrf_token %} 
+                        <div class="mb-4">
+                            {{form.username}}
+                            {% if form.errors.username %}
+                            <label class="text-danger d-block">{{ form.errors.username }}</lable>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4">
+                            {{form.email}}
+                            {% if form.errors.email %}
+                            <label class="text-danger d-block">{{ form.errors.email }}</lable>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4">
+                            {{form.password1}}
+                            {% if form.errors.password1 %}
+                            <label class="text-danger d-block">{{ form.errors.password1 }}</lable>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4">
+                            {{form.password2}}
+                            {% if form.errors.password2 %}
+                            <label class="text-danger d-block">{{ form.errors.password2 }}</lable>
+                            {% endif %}
+                        </div> 
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    <p class="my-2">Already User ?<a href="{% url 'login'  %}">Login Now</a></p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+ </div>
+{% endblock content  %}
